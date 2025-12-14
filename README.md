@@ -44,3 +44,34 @@ dialogue = """
 summary = summarizer.summarize(dialogue)
 print(f"Summary: {summary}")
 ```
+
+## Command Line Interface
+```
+# Train the model
+python src/train.py --epochs 3 --batch_size 8
+
+# Run inference on a file
+python src/inference.py --input_file sample_dialogues.txt
+
+# Evaluate the model
+python src/evaluate.py --output_dir results/
+```
+
+## Project Structure
+```
+text-summarization-nlp-project/
+├── src/                    # Source code
+│   ├── train.py           # Training script
+│   ├── inference.py       # Inference script
+│   ├── evaluate.py        # Evaluation script
+│   ├── utils.py           # Utility functions
+│   └── data_preprocessing.py # Data processing
+├── notebooks/             # Jupyter notebooks
+├── models/               # Saved models
+├── data/                 # Dataset storage
+├── tests/                # Unit tests
+├── requirements.txt      # Dependencies
+├── setup.py             # Package setup
+├── config.yaml          # Configuration
+└── README.md           # Documentation
+```
