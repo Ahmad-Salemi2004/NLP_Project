@@ -1,4 +1,0 @@
-Python 3.8+
-PyTorch 2.0+
-Flask 2.0+
-CUDA 11.8+ (for GPU acceleration)
