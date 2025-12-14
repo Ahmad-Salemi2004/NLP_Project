@@ -28,6 +28,7 @@ pip install -e .
 ```
 
 ## Basic Usage
+```
 from src.inference import TextSummarizer
 
 # Initialize summarizer
@@ -42,3 +43,4 @@ dialogue = """
 
 summary = summarizer.summarize(dialogue)
 print(f"Summary: {summary}")
+```
