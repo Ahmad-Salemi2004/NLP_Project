@@ -1,0 +1,56 @@
+{
+  "dataset": "DialogSum",
+  "statistics": {
+    "total_samples": 12460,
+    "splits": {
+      "train": 12460,
+      "validation": 500,
+      "test": 1500
+    },
+    "dialogue_stats": {
+      "mean_words": 127.4,
+      "median_words": 121.0,
+      "min_words": 23,
+      "max_words": 455,
+      "std_words": 58.7,
+      "mean_chars": 723.2,
+      "median_chars": 687.0,
+      "min_chars": 120,
+      "max_chars": 2480
+    },
+    "summary_stats": {
+      "mean_words": 21.3,
+      "median_words": 20.0,
+      "min_words": 5,
+      "max_words": 48,
+      "std_words": 7.8,
+      "mean_chars": 134.6,
+      "median_chars": 126.0,
+      "min_chars": 32,
+      "max_chars": 305
+    },
+    "compression_ratio": {
+      "mean": 6.2,
+      "median": 6.0,
+      "min": 2.1,
+      "max": 15.8,
+      "std": 2.3
+    },
+    "topics_distribution": {
+      "Healthcare": 1246,
+      "Employment": 1121,
+      "Travel": 996,
+      "Food": 873,
+      "Education": 872,
+      "Shopping": 748,
+      "Technology": 623,
+      "Entertainment": 498,
+      "Family": 498,
+      "Sports": 373,
+      "Finance": 249,
+      "Other": 1356
+    }
+  },
+  "generated_on": "2024-01-15",
+  "notes": "Statistics based on DialogSum dataset v1.0"
+}
