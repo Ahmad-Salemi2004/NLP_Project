@@ -1,0 +1,32 @@
+============================================================================
+Training Log - 2024-01-15T10:30:00
+============================================================================
+Model: facebook/bart-large-cnn
+Dataset: DialogSum
+Epochs: 2
+Batch Size: 8
+Learning Rate: 5e-5
+
+Epoch 1/2:
+- Step 500: Loss = 1.5910
+- Step 1000: Loss = 1.4884
+- Step 1500: Loss = 1.4323
+- Epoch Loss: 1.5032
+
+Epoch 2/2:
+- Step 2000: Loss = 1.0826
+- Step 2500: Loss = 1.0183
+- Step 3000: Loss = 0.9992
+- Epoch Loss: 1.0337
+
+Total Training Time: 62 minutes
+Final Loss: 1.2598
+Model saved to: models/bart-dialogsum/
+
+Evaluation Results:
+- Test Loss: 1.6770
+- ROUGE-1: 0.4521
+- ROUGE-2: 0.2534
+- ROUGE-L: 0.4238
+
+============================================================================
