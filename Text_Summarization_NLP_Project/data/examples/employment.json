@@ -1,0 +1,14 @@
+[
+  {
+    "id": "emp_1",
+    "title": "Performance Review",
+    "dialogue": "#Person1#: Let's discuss your performance this quarter.\n#Person2#: I think I've met all my targets.\n#Person1#: Your sales numbers are excellent. However, documentation needs improvement.\n#Person2#: I'll work on that. Any other feedback?\n#Person1#: Overall good work. Let's set goals for next quarter.",
+    "summary": "Manager gives positive performance review with excellent sales but notes documentation needs improvement."
+  },
+  {
+    "id": "emp_2",
+    "title": "Team Meeting",
+    "dialogue": "#Person1#: Today we'll discuss the Q3 project timeline.\n#Person2#: I'm concerned about the deadline. We're behind schedule.\n#Person1#: What's causing the delay?\n#Person2#: The API integration is taking longer than expected.\n#Person1#: Let's allocate more resources to that task.",
+    "summary": "Team meeting discusses Q3 project delay due to API integration, decides to allocate more resources."
+  }
+]
