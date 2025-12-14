@@ -1,0 +1,14 @@
+[
+  {
+    "id": "health_1",
+    "title": "Medical Check-up",
+    "dialogue": "#Person1#: Good morning, I'm here for my annual physical.\n#Person2#: Please have a seat. Any specific concerns today?\n#Person1#: Just the usual check-up. I've been feeling tired lately though.\n#Person2#: Let me check your blood pressure first. Have you been sleeping well?\n#Person1#: Not really, about 5-6 hours a night.\n#Person2#: That might explain the fatigue. Adults need 7-9 hours.",
+    "summary": "Patient visits for annual physical, mentions fatigue, doctor notes insufficient sleep may be cause."
+  },
+  {
+    "id": "health_2",
+    "title": "Pharmacy Consultation",
+    "dialogue": "#Person1#: I need to refill my blood pressure medication.\n#Person2#: Which medication is it? Do you have the prescription?\n#Person1#: It's Lisinopril 10mg. Here's the prescription from Dr. Smith.\n#Person2#: It'll be ready in 15 minutes. Any side effects from the medication?\n#Person1#: None so far, it's been working well.\n#Person2#: Good. Remember to take it at the same time every day.",
+    "summary": "Patient requests Lisinopril refill, pharmacist prepares it and reminds about consistent timing."
+  }
+]
