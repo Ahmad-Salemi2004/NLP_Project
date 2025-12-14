@@ -1,0 +1,477 @@
+# ========== MODEL CONFIGURATION ==========
+model:
+  # Name of the base model from Hugging Face
+  name: "facebook/bart-large-cnn"
+  
+  # Path to our fine-tuned model (if we have one)
+  fine_tuned_path: "./models/bart-dialogsum"
+  
+  # Maximum length for input text (in tokens)
+  max_input_length: 512
+  
+  # Maximum length for generated summary (in tokens)
+  max_target_length: 150
+  
+  # Tokenizer settings
+  tokenizer:
+    padding: "max_length"
+    truncation: true
+    return_tensors: "pt"
+
+# ========== TRAINING CONFIGURATION ==========
+# These are the settings we used when training the model
+training:
+  # Number of training epochs
+  epochs: 2
+  
+  # Batch size for training
+  batch_size: 8
+  
+  # Batch size for evaluation
+  eval_batch_size: 8
+  
+  # Learning rate
+  learning_rate: 5e-5
+  
+  # Weight decay (for regularization)
+  weight_decay: 0.01
+  
+  # Number of warmup steps
+  warmup_steps: 500
+  
+  # Random seed for reproducibility
+  seed: 42
+  
+  # Use mixed precision training (faster on GPU)
+  fp16: true
+  
+  # Save model every X steps
+  save_steps: 1000
+  
+  # Evaluate model every X steps
+  eval_steps: 500
+  
+  # Log training progress every X steps
+  logging_steps: 100
+
+# ========== INFERENCE CONFIGURATION ==========
+# These settings control how summaries are generated
+inference:
+  # Default maximum length for summary
+  max_length: 150
+  
+  # Default minimum length for summary
+  min_length: 40
+  
+  # Number of beams for beam search (higher = better quality but slower)
+  num_beams: 4
+  
+  # Length penalty (>1.0 = longer summaries, <1.0 = shorter summaries)
+  length_penalty: 2.0
+  
+  # Penalty for repeating n-grams
+  no_repeat_ngram_size: 3
+  
+  # Stop generation early when possible
+  early_stopping: true
+  
+  # Temperature for sampling (1.0 = no temperature scaling)
+  temperature: 1.0
+  
+  # Top-k sampling (keep only top k tokens)
+  top_k: 50
+  
+  # Top-p sampling (nucleus sampling)
+  top_p: 1.0
+  
+  # Whether to use sampling (false = use greedy/beam search)
+  do_sample: false
+  
+  # Penalty for repeating tokens
+  repetition_penalty: 1.0
+
+# ========== DATASET CONFIGURATION ==========
+dataset:
+  # Name of the dataset from Hugging Face
+  name: "knkarthick/dialogsum"
+  
+  # Where to cache downloaded datasets
+  cache_dir: "./data/cache"
+  
+  # Split names
+  train_split: "train"        # Training data
+  val_split: "validation"     # Validation data
+  test_split: "test"          # Test data
+  
+  # For debugging: use only a subset of data
+  sample_size: null           # Set to 100 for quick testing
+
+# ========== PATHS CONFIGURATION ==========
+paths:
+  # Directory to save trained models
+  model_dir: "./models"
+  
+  # Directory for dataset files
+  data_dir: "./data"
+  
+  # Directory for training logs
+  log_dir: "./logs"
+  
+  # Directory for output files
+  output_dir: "./outputs"
+  
+  # Directory for cached files
+  cache_dir: "./cache"
+  
+  # Directory for checkpoints
+  checkpoint_dir: "./checkpoints"
+  
+  # Directory for evaluation results
+  eval_dir: "./evaluation_results"
+
+# ========== HARDWARE CONFIGURATION ==========
+hardware:
+  # Device to use: "cuda" for GPU, "cpu" for CPU
+  device: "cuda"
+  
+  # Number of workers for data loading
+  num_workers: 4
+  
+  # Pin memory for faster data transfer to GPU
+  pin_memory: true
+  
+  # Mixed precision training: "fp16", "bf16", or null
+  mixed_precision: "fp16"
+  
+  # Use gradient checkpointing to save memory
+  gradient_checkpointing: false
+  
+  # Maximum gradient norm for gradient clipping
+  max_grad_norm: 1.0
+
+# ========== EVALUATION CONFIGURATION ==========
+evaluation:
+  # Metrics to compute during evaluation
+  metrics: ["loss", "rouge", "bleu"]
+  
+  # ROUGE metrics to compute
+  rouge_types: ["rouge1", "rouge2", "rougeL"]
+  
+  # Whether to compute BLEU score
+  compute_bleu: true
+  
+  # Whether to save predictions
+  save_predictions: true
+  
+  # Number of samples to evaluate
+  num_samples: 100
+  
+  # Whether to compute statistics
+  compute_statistics: true
+  
+  # Statistics to compute
+  statistics:
+    - "word_count"
+    - "sentence_count"
+    - "compression_ratio"
+    - "summary_length"
+
+# ========== LOGGING CONFIGURATION ==========
+logging:
+  # Logging level: DEBUG, INFO, WARNING, ERROR
+  level: "INFO"
+  
+  # Log format
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  
+  # Log file path
+  file: "./logs/app.log"
+  
+  # Whether to log to console
+  console: true
+  
+  # Whether to log to file
+  log_to_file: true
+
+# ========== WEB APP CONFIGURATION ==========
+web_app:
+  # Host to bind the Flask app to
+  host: "0.0.0.0"
+  
+  # Port to run the Flask app on
+  port: 5000
+  
+  # Enable debug mode (don't use in production!)
+  debug: true
+  
+  # Number of worker processes
+  workers: 4
+  
+  # Request timeout in seconds
+  timeout: 30
+  
+  # Maximum content length (in bytes)
+  max_content_length: 16777216  # 16MB
+  
+  # Secret key for Flask sessions
+  secret_key: "your-secret-key-here-change-this"
+
+# ========== API CONFIGURATION ==========
+api:
+  # Enable API endpoints
+  enabled: true
+  
+  # API prefix (e.g., /api/v1)
+  prefix: "/api"
+  
+  # Enable CORS (Cross-Origin Resource Sharing)
+  cors_enabled: true
+  
+  # Allowed origins for CORS
+  cors_origins: ["*"]
+  
+  # Rate limiting (requests per minute)
+  rate_limit: 60
+  
+  # Enable API documentation
+  docs_enabled: true
+  
+  # API version
+  version: "1.0.0"
+
+# ========== MONITORING CONFIGURATION ==========
+monitoring:
+  # Enable Weights & Biases logging
+  wandb_enabled: false
+  
+  # W&B project name
+  wandb_project: "text-summarization-nlp"
+  
+  # W&B entity (your username)
+  wandb_entity: null
+  
+  # Enable TensorBoard logging
+  tensorboard_enabled: true
+  
+  # TensorBoard log directory
+  tensorboard_log_dir: "./logs/tensorboard"
+  
+  # Enable Prometheus metrics
+  prometheus_enabled: false
+  
+  # Prometheus port
+  prometheus_port: 9090
+
+# ========== DATA PROCESSING CONFIGURATION ==========
+data_processing:
+  # Clean text before processing
+  clean_text: true
+  
+  # Text cleaning rules
+  cleaning_rules:
+    remove_urls: true
+    remove_emails: true
+    remove_phone_numbers: true
+    remove_special_chars: true
+    remove_extra_spaces: true
+    normalize_whitespace: true
+  
+  # Whether to lowercase text
+  lowercase: false
+  
+  # Whether to remove stop words
+  remove_stopwords: false
+  
+  # Whether to stem words
+  stemming: false
+  
+  # Whether to lemmatize words
+  lemmatization: false
+
+# ========== EXPERIMENT TRACKING ==========
+experiment:
+  # Experiment name
+  name: "text-summarization-exp-01"
+  
+  # Experiment description
+  description: "Fine-tuning BART on DialogSum dataset for dialogue summarization"
+  
+  # Tags for experiment
+  tags: ["nlp", "summarization", "bart", "dialogsum", "college-project"]
+  
+  # Hyperparameters to track
+  hyperparameters:
+    model_name: "facebook/bart-large-cnn"
+    dataset: "DialogSum"
+    epochs: 2
+    batch_size: 8
+    learning_rate: 5e-5
+  
+  # Git information (auto-filled)
+  git:
+    commit_hash: null
+    branch: null
+    repo_url: null
+
+# ========== DEFAULT VALUES FOR THE APP ==========
+defaults:
+  # Default text for testing
+  test_text: "#Person1#: Hello, how are you today?\n#Person2#: I'm good, thank you! How about you?\n#Person1#: I'm doing well, just busy with work."
+  
+  # Default max length for UI
+  default_max_length: 150
+  
+  # Default min length for UI
+  default_min_length: 40
+  
+  # Default number of beams for UI
+  default_num_beams: 4
+  
+  # Maximum text length allowed in UI (in characters)
+  max_text_length: 10000
+  
+  # Minimum text length required (in characters)
+  min_text_length: 10
+
+# ========== EXAMPLE CONFIGURATION ==========
+examples:
+  # Enable example dialogues in the UI
+  enabled: true
+  
+  # Number of examples to show
+  count: 5
+  
+  # Example categories
+  categories:
+    - "Healthcare"
+    - "Employment"
+    - "Travel"
+    - "Food & Dining"
+    - "Business"
+    - "Education"
+  
+  # Example file path (optional)
+  file_path: "./data/examples.json"
+
+# ========== BACKUP CONFIGURATION ==========
+backup:
+  # Enable automatic backups
+  enabled: true
+  
+  # Backup directory
+  directory: "./backups"
+  
+  # Backup frequency (in hours)
+  frequency: 24
+  
+  # Number of backups to keep
+  keep_last: 7
+  
+  # What to backup
+  items:
+    - "models"
+    - "configs"
+    - "logs"
+    - "checkpoints"
+
+# ========== SECURITY CONFIGURATION ==========
+security:
+  # Enable API key authentication
+  api_key_auth: false
+  
+  # API key (change this in production!)
+  api_key: "your-api-key-here-change-this"
+  
+  # Enable rate limiting
+  rate_limiting: true
+  
+  # Enable input sanitization
+  input_sanitization: true
+  
+  # Maximum file upload size (in MB)
+  max_upload_size: 10
+  
+  # Allowed file extensions for upload
+  allowed_extensions: [".txt", ".pdf", ".docx"]
+
+# ========== DEBUGGING CONFIGURATION ==========
+debug:
+  # Enable debug mode
+  enabled: false
+  
+  # Log model predictions
+  log_predictions: false
+  
+  # Log input/output examples
+  log_examples: false
+  
+  # Save intermediate results
+  save_intermediate: false
+  
+  # Profile performance
+  profile: false
+  
+  # Debug file path
+  debug_file: "./logs/debug.log"
+
+# ========== DEPLOYMENT CONFIGURATION ==========
+deployment:
+  # Production mode (disables debug features)
+  production: false
+  
+  # Use Gunicorn for production
+  use_gunicorn: false
+  
+  # Gunicorn workers
+  gunicorn_workers: 4
+  
+  # Gunicorn timeout
+  gunicorn_timeout: 30
+  
+  # Docker configuration
+  docker:
+    enabled: false
+    image_name: "text-summarization-app"
+    port: 5000
+  
+  # Cloud deployment
+  cloud:
+    platform: null  # "aws", "gcp", "azure", "heroku"
+    region: "us-east-1"
+    instance_type: "t2.micro"
+
+# ========== NOTIFICATION CONFIGURATION ==========
+notifications:
+  # Email notifications
+  email:
+    enabled: false
+    smtp_server: "smtp.gmail.com"
+    smtp_port: 587
+    sender_email: "your-email@gmail.com"
+    sender_password: "your-password"
+    recipient_emails: []
+  
+  # Slack notifications
+  slack:
+    enabled: false
+    webhook_url: "your-slack-webhook-url"
+    channel: "#alerts"
+  
+  # Discord notifications
+  discord:
+    enabled: false
+    webhook_url: "your-discord-webhook-url"
+
+# ========== VERSION INFO ==========
+version:
+  # Configuration version
+  config_version: "1.0.0"
+  
+  # Last updated
+  last_updated: "2024-01-15"
+  
+  # Compatible with app version
+  compatible_app_version: "1.0.0"
+  
+  # Notes
+  notes: "Initial configuration for NLP text summarization project"
