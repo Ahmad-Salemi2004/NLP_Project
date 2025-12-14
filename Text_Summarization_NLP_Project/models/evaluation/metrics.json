@@ -1,0 +1,51 @@
+{
+  "evaluation": {
+    "model": "bart-dialogsum",
+    "dataset": "DialogSum",
+    "split": "test",
+    "timestamp": "2024-01-15T14:30:00",
+    "samples_evaluated": 100
+  },
+  "metrics": {
+    "loss": 1.6770278215408325,
+    "rouge": {
+      "rouge1": 0.4521,
+      "rouge2": 0.2534,
+      "rougeL": 0.4238,
+      "rougeLsum": 0.4256
+    },
+    "bleu": 0.1876,
+    "meteor": 0.3452
+  },
+  "statistics": {
+    "input_length": {
+      "mean": 127.4,
+      "std": 58.7,
+      "min": 23,
+      "max": 455
+    },
+    "summary_length": {
+      "mean": 21.3,
+      "std": 7.8,
+      "min": 5,
+      "max": 48
+    },
+    "compression_ratio": {
+      "mean": 6.2,
+      "std": 2.3,
+      "min": 2.1,
+      "max": 15.8
+    }
+  },
+  "examples": [
+    {
+      "id": "test_0",
+      "input": "I can't find my keys anywhere...",
+      "reference": "Person1 couldn't find their keys...",
+      "generated": "Person1 lost their keys and Person2 helped...",
+      "rouge1": 0.68,
+      "rouge2": 0.45,
+      "rougeL": 0.62
+    }
+  ]
+}
