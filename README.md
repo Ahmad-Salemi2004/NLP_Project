@@ -25,3 +25,20 @@ pip install -r requirements.txt
 
 # Or install as a package
 pip install -e .
+
+
+text-summarization-nlp-project/
+├── src/                    # Source code
+│   ├── train.py           # Training script
+│   ├── inference.py       # Inference script
+│   ├── evaluate.py        # Evaluation script
+│   ├── utils.py           # Utility functions
+│   └── data_preprocessing.py # Data processing
+├── notebooks/             # Jupyter notebooks
+├── models/               # Saved models
+├── data/                 # Dataset storage
+├── tests/                # Unit tests
+├── requirements.txt      # Dependencies
+├── setup.py             # Package setup
+├── config.yaml          # Configuration
+└── README.md           # Documentation
