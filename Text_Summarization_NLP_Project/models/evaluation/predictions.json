@@ -1,0 +1,24 @@
+[
+  {
+    "id": "test_0",
+    "input": "#Person1#: I can't find my keys anywhere.\n#Person2#: When did you last have them?\n#Person1#: This morning when I left the house.\n#Person2#: Did you check your coat pockets?\n#Person1#: Yes, they're not there.\n#Person2#: What about your bag?\n#Person1#: Oh, here they are! In the side pocket. Thanks!",
+    "reference": "#Person1 couldn't find their keys, but #Person2 helped them remember to check their bag where they were.",
+    "generated": "#Person1 lost their keys and #Person2 suggested checking their bag, where they were found.",
+    "length": {
+      "input_words": 58,
+      "reference_words": 17,
+      "generated_words": 15
+    }
+  },
+  {
+    "id": "test_1",
+    "input": "#Person1#: The printer is out of paper again.\n#Person2#: There should be more in the supply closet.\n#Person1#: Can you show me where?\n#Person2#: Sure, follow me. It's on the bottom shelf.\n#Person1#: Thanks. I always forget where things are kept.",
+    "reference": "#Person1 needs paper for the printer and #Person2 shows them where it's kept in the supply closet.",
+    "generated": "#Person1 needs printer paper and #Person2 shows them where to find it in the supply closet.",
+    "length": {
+      "input_words": 45,
+      "reference_words": 18,
+      "generated_words": 17
+    }
+  }
+]
