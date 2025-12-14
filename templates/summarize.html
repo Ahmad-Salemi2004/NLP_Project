@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Summarization - NLP Project</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .header {
+            background-color: #4a6fa5;
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        
+        .status.error {
+            background-color: #dc3545;
+        }
+        
+        .container {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .panel {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            flex: 1;
+        }
+        
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #4a6fa5;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 300px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: monospace;
+            resize: vertical;
+            margin-bottom: 15px;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .control-group {
+            flex: 1;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        select, input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .btn {
+            background-color: #4a6fa5;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            background-color: #3a5f8a;
+        }
+        
+        .btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .result-box {
+            background-color: #f0f7ff;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #4a6fa5;
+            min-height: 200px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        
+        .stat-item {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4a6fa5;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .examples {
+            margin-top: 30px;
+        }
+        
+        .example {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            transition: all 0.3s;
+        }
+        
+        .example:hover {
+            background: #e9ecef;
+            border-color: #4a6fa5;
+            transform: translateX(5px);
+        }
+        
+        .example-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .example-category {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #4a6fa5;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .api-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .endpoint {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #4a6fa5;
+        }
+        
+        .method {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #4a6fa5;
+            color: white;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #666;
+            padding: 20px;
+            border-top: 1px solid #ddd;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📝 Text Summarization</h1>
+        <p class="subtitle">NLP Course Project - Transform long text into concise summaries</p>
+        <div class="status {% if not model_loaded %}error{% endif %}" id="modelStatus">
+            {{ model_status }}
+        </div>
+    </div>
+    
+    {% if error %}
+    <div class="error-message">
+        ❌ {{ error }}
+    </div>
+    {% endif %}
+    
+    {% if success %}
+    <div class="success-message">
+        ✅ Summary generated successfully!
+    </div>
+    {% endif %}
+    
+    <div class="container">
+        <!-- Left Panel: Input -->
+        <div class="panel">
+            <h2>📤 Input Text</h2>
+            
+            <form method="POST" action="/summarize" id="summarizeForm" onsubmit="showLoading()">
+                <textarea id="text" name="text" placeholder="Enter your text here... (at least 10 characters)">{% if input_text %}{{ input_text }}{% endif %}</textarea>
+                
+                <div class="controls">
+                    <div class="control-group">
+                        <label for="max_length">Max Summary Length:</label>
+                        <select id="max_length" name="max_length">
+                            <option value="100" {% if max_length == 100 %}selected{% endif %}>Short (100 chars)</option>
+                            <option value="150" {% if not max_length or max_length == 150 %}selected{% endif %}>Medium (150 chars)</option>
+                            <option value="200" {% if max_length == 200 %}selected{% endif %}>Long (200 chars)</option>
+                            <option value="250" {% if max_length == 250 %}selected{% endif %}>Very Long (250 chars)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="min_length">Min Summary Length:</label>
+                        <select id="min_length" name="min_length">
+                            <option value="30" {% if min_length == 30 %}selected{% endif %}>30 chars</option>
+                            <option value="40" {% if not min_length or min_length == 40 %}selected{% endif %}>40 chars</option>
+                            <option value="50" {% if min_length == 50 %}selected{% endif %}>50 chars</option>
+                            <option value="60" {% if min_length == 60 %}selected{% endif %}>60 chars</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn" id="submitBtn" {% if not model_loaded %}disabled{% endif %}>
+                    ✨ Generate Summary
+                </button>
+                
+                <button type="button" class="btn" onclick="clearForm()" style="background-color: #6c757d; margin-top: 10px;">
+                    🗑️ Clear All
+                </button>
+            </form>
+            
+            <div class="loading" id="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Generating summary... This might take a moment.</p>
+            </div>
+            
+            <div class="examples">
+                <h3>💡 Try These Examples:</h3>
+                <div id="examplesList">
+                    {% for example in sample_dialogues %}
+                    <div class="example" onclick="loadExample('{{ example.id }}')">
+                        <div class="example-title">
+                            {{ example.title }}
+                            <span class="example-category">{{ example.category }}</span>
+                        </div>
+                        <p style="color: #666; font-size: 14px; margin-top: 8px;">
+                            {{ example.text[:100] }}...
+                        </p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Panel: Output -->
+        <div class="panel">
+            <h2>📄 Generated Summary</h2>
+            
+            <div class="result-box">
+                {% if summary %}
+                <div style="margin-bottom: 20px;">
+                    <h3 style="color: #2c3e50; margin-bottom: 10px;">AI Summary:</h3>
+                    <p style="font-size: 16px; line-height: 1.6; color: #34495e;">{{ summary }}</p>
+                </div>
+                
+                {% if model_info %}
+                <div style="background: #e8f4fd; padding: 10px; border-radius: 5px; margin-top: 15px;">
+                    <small><strong>Model used:</strong> {{ model_info }}</small>
+                </div>
+                {% endif %}
+                
+                {% else %}
+                <div style="text-align: center; color: #999; padding: 60px 20px;">
+                    <div style="font-size: 48px; margin-bottom: 20px;">🤖</div>
+                    <h3>No Summary Yet</h3>
+                    <p>Enter some text on the left and click "Generate Summary" to see the magic!</p>
+                </div>
+                {% endif %}
+            </div>
+            
+            {% if stats %}
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-value">{{ stats.input_words }}</div>
+                    <div class="stat-label">Input Words</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">{{ stats.summary_words }}</div>
+                    <div class="stat-label">Summary Words</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">{{ stats.compression_ratio }}x</div>
+                    <div class="stat-label">Compression Ratio</div>
+                </div>
+            </div>
+            {% endif %}
+            
+            <div class="api-info">
+                <h3>🔧 API Access</h3>
+                <p>Use our API for programmatic access:</p>
+                
+                <div class="endpoint">
+                    <span class="method">POST</span>
+                    <strong>/api/summarize</strong>
+                    <p style="margin-top: 5px; color: #666; font-size: 14px;">
+                        Send JSON with 'text', 'max_length', and 'min_length'
+                    </p>
+                </div>
+                
+                <div class="endpoint">
+                    <span class="method">GET</span>
+                    <strong>/api/health</strong>
+                    <p style="margin-top: 5px; color: #666; font-size: 14px;">
+                        Check if the service is running
+                    </p>
+                </div>
+                
+                <div class="endpoint">
+                    <span class="method">GET</span>
+                    <strong>/api/examples</strong>
+                    <p style="margin-top: 5px; color: #666; font-size: 14px;">
+                        Get sample dialogues
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Text Summarization NLP Project | Natural Language Processing Course</p>
+        <p>Built with Flask & Hugging Face Transformers</p>
+        <p style="margin-top: 10px; font-size: 14px;">
+            <a href="/api/health" style="color: #4a6fa5; margin: 0 10px;">Health Check</a> |
+            <a href="/api/examples" style="color: #4a6fa5; margin: 0 10px;">API Examples</a> |
+            <a href="#" onclick="showApiExample()" style="color: #4a6fa5; margin: 0 10px;">API Demo</a>
+        </p>
+    </footer>
+    
+    <script>
+        // Store examples data for JavaScript
+        const examples = {
+            {% for example in sample_dialogues %}
+            {{ example.id }}: `{{ example.text|replace("'", "\\'")|replace("\n", "\\n") }}`,
+            {% endfor %}
+        };
+        
+        // Example titles
+        const exampleTitles = {
+            {% for example in sample_dialogues %}
+            {{ example.id }}: "{{ example.title }}",
+            {% endfor %}
+        };
+        
+        function loadExample(exampleId) {
+            if (examples[exampleId]) {
+                document.getElementById('text').value = examples[exampleId];
+                alert(`Loaded example: "${exampleTitles[exampleId]}"`);
+                
+                // Scroll to top
+                document.getElementById('text').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        function clearForm() {
+            document.getElementById('text').value = '';
+            if (document.getElementById('loading')) {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+        
+        function showLoading() {
+            const text = document.getElementById('text').value.trim();
+            if (text.length >= 10) {
+                document.getElementById('loading').style.display = 'block';
+                document.getElementById('submitBtn').disabled = true;
+                document.getElementById('submitBtn').innerHTML = '⏳ Processing...';
+            }
+        }
+        
+        function showApiExample() {
+            const exampleCode = `// JavaScript example using fetch API
+fetch('/api/summarize', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        text: 'Your text to summarize here...',
+        max_length: 150,
+        min_length: 40
+    })
+})
+.then(response => response.json())
+.then(data => {
+    if (data.success) {
+        console.log('Summary:', data.summary);
+        console.log('Compression:', data.statistics.compression_ratio + 'x');
+    } else {
+        console.error('Error:', data.error);
+    }
+});`;
+            
+            alert('API Usage Example:\\n\\n' + exampleCode);
+        }
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+Enter to submit
+            if (e.ctrlKey && e.key === 'Enter') {
+                e.preventDefault();
+                document.getElementById('summarizeForm').submit();
+            }
+            
+            // Ctrl+E to clear
+            if (e.ctrlKey && e.key === 'E') {
+                e.preventDefault();
+                clearForm();
+            }
+            
+            // Ctrl+1,2,3 to load examples
+            if (e.ctrlKey && (e.key === '1' || e.key === '2' || e.key === '3')) {
+                e.preventDefault();
+                const exampleId = parseInt(e.key);
+                if (examples[exampleId]) {
+                    loadExample(exampleId);
+                }
+            }
+        });
+        
+        // Auto-resize textarea
+        const textarea = document.getElementById('text');
+        textarea.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+    </script>
+</body>
+</html>
