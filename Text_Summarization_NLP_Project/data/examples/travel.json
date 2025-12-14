@@ -1,0 +1,14 @@
+[
+  {
+    "id": "travel_1",
+    "title": "Flight Booking",
+    "dialogue": "#Person1#: I'd like to book a flight to London for next week.\n#Person2#: Round trip or one way?\n#Person1#: Round trip, returning in two weeks.\n#Person2#: Direct flight or with layover?\n#Person1#: Direct if possible, economy class.\n#Person2#: I found a flight for $850. Shall I book it?",
+    "summary": "Customer books round trip to London for two weeks, chooses direct economy flight for $850."
+  },
+  {
+    "id": "travel_2",
+    "title": "Hotel Reservation",
+    "dialogue": "#Person1#: Do you have rooms available for this weekend?\n#Person2#: Yes, we have standard and deluxe rooms.\n#Person1#: What's the rate for standard?\n#Person2#: $120 per night including breakfast.\n#Person1#: I'll take it for two nights.\n#Person2#: Perfect, I'll need a credit card for reservation.",
+    "summary": "Guest books standard hotel room at $120/night including breakfast for two nights."
+  }
+]
