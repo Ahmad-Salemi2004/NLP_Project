@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "Doctor Appointment",
+    "category": "Healthcare",
+    "dialogue": "#Person1#: Hi, Mr. Smith. I'm Doctor Hawkins. Why are you here today?\n#Person2#: I found it would be a good idea to get a check-up.\n#Person1#: Yes, well, you haven't had one for 5 years. You should have one every year.\n#Person2#: I know. I figure as long as there is nothing wrong, why go see the doctor?\n#Person1#: Well, the best way to avoid serious illnesses is to find out about them early. So try to come at least once a year for your own good.\n#Person2#: Ok.\n#Person1#: Let me see here. Your eyes and ears look fine. Take a deep breath, please. Do you smoke, Mr. Smith?\n#Person2#: Yes.\n#Person1#: Smoking is the leading cause of lung cancer and heart disease, you know. You really should quit.\n#Person2#: I've tried hundreds of times, but I just can't seem to kick the habit.\n#Person1#: Well, we have classes and some medications that might help. I'll give you more information before you leave.\n#Person2#: Ok, thanks doctor.",
+    "summary": "Mr. Smith's getting a check-up, and Doctor Hawkins advises him to have one every year. Hawkins'll give some information about their classes and medications to help Mr. Smith quit smoking.",
+    "description": "A patient visits a doctor for a routine check-up and discusses smoking habits."
+  },
+  {
+    "id": 2,
+    "title": "Job Interview",
+    "category": "Employment",
+    "dialogue": "#Person1#: Tell me about your previous work experience.\n#Person2#: I worked as a software developer at TechCorp for three years. I was responsible for developing web applications.\n#Person1#: What technologies did you use?\n#Person2#: I primarily used Python, Django, and React. I also worked with Docker and AWS.\n#Person1#: Why are you interested in this position?\n#Person2#: I'm looking for new challenges and your company's focus on AI aligns with my interests.\n#Person1#: What are your salary expectations?\n#Person2#: I'm looking for a package in the range of $80,000 to $90,000 annually.\n#Person1#: That's within our range. When can you start?\n#Person2#: I can start in two weeks after serving my notice period.",
+    "summary": "#Person2 is interviewing for a software developer position, discussing their experience with Python, Django, React, Docker, and AWS, and their salary expectations.",
+    "description": "A candidate interviews for a software developer position."
+  },
+  {
+    "id": 3,
+    "title": "Travel Planning",
+    "category": "Travel",
+    "dialogue": "#Person1#: Have you decided where we should go for our vacation?\n#Person2#: I was thinking about Japan. What do you think?\n#Person1#: Japan sounds amazing! When were you thinking of going?\n#Person2#: Maybe in the spring to see the cherry blossoms. What's your budget?\n#Person1#: I can spend around $3000 for the whole trip.\n#Person2#: That should be enough for a 10-day trip if we plan carefully.\n#Person1#: Great! Let's start looking for flights and accommodation.\n#Person2#: I've already found some good deals on flights. Let me show you.\n#Person1#: Perfect! Should we book hotels in advance?\n#Person2#: Yes, especially during cherry blossom season. It gets very crowded.",
+    "summary": "#Person1 and #Person2 are planning a trip to Japan during cherry blossom season with a $3000 budget, discussing flights and accommodation.",
+    "description": "Two friends plan their vacation to Japan during cherry blossom season."
+  },
+  {
+    "id": 4,
+    "title": "Restaurant Review",
+    "category": "Food & Dining",
+    "dialogue": "#Person1#: How was your meal?\n#Person2#: The steak was cooked perfectly, but the vegetables were a bit overcooked.\n#Person1#: I'm sorry to hear that. Would you like me to bring you a fresh side?\n#Person2#: That would be great, thank you.\n#Person1#: How about dessert? Our chocolate lava cake is very popular.\n#Person2#: I'll take one to go. I'm quite full from the main course.\n#Person1#: Excellent choice. I'll get that packaged for you.\n#Person2#: Also, could I get the check please?\n#Person1#: Of course. I'll bring it right away with your dessert.",
+    "summary": "#Person2 enjoyed their steak but found the vegetables overcooked, so #Person1 offers a fresh side. #Person2 orders chocolate lava cake to go and requests the check.",
+    "description": "A customer provides feedback about their meal at a restaurant."
+  },
+  {
+    "id": 5,
+    "title": "Productivity Discussion",
+    "category": "Business",
+    "dialogue": "#Person1#: The ultimate productivity hack is saying no.\n#Person2#: What do you mean by that?\n#Person1#: Not doing something will always be faster than doing it. Remember that there is no code faster than no code.\n#Person2#: That makes sense for programming, but what about meetings?\n#Person1#: There is no meeting that goes faster than not having a meeting at all.\n#Person2#: So we should cancel all meetings?\n#Person1#: Not all, but we say yes to many things we don't actually want to do. There are many meetings held that don't need to be held.\n#Person2#: I see your point. How do we decide what to say no to?\n#Person1#: Ask if things are necessary. Many of them are not, and a simple 'no' will be more productive.",
+    "summary": "#Person1 discusses the productivity benefits of saying 'no' to unnecessary tasks and meetings, emphasizing that not doing something is faster than doing it inefficiently.",
+    "description": "A discussion about productivity and time management in the workplace."
+  }
+]
